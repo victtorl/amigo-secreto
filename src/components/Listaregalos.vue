@@ -1,5 +1,5 @@
 <template>
-  <div class="px-6 lg:px-36 py-10  bg-gray-800 relative text-white">
+  <div class="px-6 lg:px-36 py-10 h-[100vh] bg-gray-800 relative text-white">
       <h1 class="text-2xl text-center font-medium  pb-6">Lista de regalos familia  </h1>
       <h2 class="text-xl font-medium pb-4">Reglas:</h2>
       <ol class="text-lg flex flex-col gap-y-[10px] leading-5" >
@@ -201,7 +201,7 @@ const save=() => {
      })
 
   }else{
-    toast.error("Antes, debes completar todos los campos ", {
+    toast.error("Antes, debes completar todos los campos o agregar alguna sugerencia", {
       autoClose: 3000,
       position: toast.POSITION.TOP_CENTER,
     });
