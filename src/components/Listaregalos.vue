@@ -1,8 +1,8 @@
 <template>
   <div class="px-6 lg:px-36 py-10  bg-gray-800 relative text-white">
-      <h1 class="text-2xl text-center font-medium  pb-6">lista de regalos familia  </h1>
+      <h1 class="text-2xl text-center font-medium  pb-6">Lista de regalos familia  </h1>
       <h2 class="text-xl font-medium pb-4">Reglas:</h2>
-      <ol class="text-lg flex flex-col gap-y-2" >
+      <ol class="text-lg flex flex-col gap-y-[10px] leading-5" >
         <li>Los regalos tienen un precio base de 10 soles(sujeto a cariño y voluntad de quien regala).</li>
         <li>Llenar la lista con las pretenciones de regalos  que desea recibir.</li>
         <li>Puede editar esta lista hasta una fecha limite la cual sera comunicada en el grupo de wsp.</li>
@@ -11,14 +11,16 @@
 
       <div class=" flex flex-col gap-y-4 items-start mt-8 ">  
         <label class=" text-xl font-medium" for="">Añadir nombre y sugerencia</label>
-             <div class="flex flex-col relative  w-56  lg:w-96 text-black " >
-                  <div class="flex  flex-col items-center gap-x-2">
-                    <input v-model="nombremodel"   class=" w-56 mb-4 lg:w-64 h-10  border-2 pl-2 text-sm placeholder:text-sm  border-secundary rounded-md focus-visible:outline-none"  
-                      type="text" placeholder="Nombre" >
+             <div class="flex flex-col relative  w-auto  lg:w-auto text-black " >
+                  <div class="flex  flex-col items-start gap-x-2">
+                    <input v-model="nombremodel"   class=" w-72 mb-4 lg:w-auto h-10  border-2 pl-2 text-sm placeholder:text-sm  border-secundary rounded-md focus-visible:outline-none"  
+                    :class="{ 'border-b-2 border-red-600': v$.nombremodel.$error }" 
+                    type="text" placeholder="Nombre" >
                     <span class="flex flex-row">
-                      <input v-model="present"  @keyup.enter="addItemLista" class="relative w-56  lg:w-64 h-10  border-2 pl-2 text-sm placeholder:text-sm  border-secundary rounded-md focus-visible:outline-none"  
+                      <input v-model="present"  @keyup.enter="addItemLista" class="relative w-72   lg:w-auto h-10  border-2 pl-2 text-sm placeholder:text-sm  border-secundary rounded-md focus-visible:outline-none"  
+                      
                       type="text" placeholder="Escriba su sugerencia" >
-                      <PlusCircleIcon class="h-8 w-8 text-red-500 absolute -right-8 bottom-1 " @click="addItemLista" />
+                      <PlusCircleIcon class="h-8 w-8 text-red-500 absolute  -right-8 bottom-1 " @click="addItemLista" />
                     </span>
                   </div>
               </div>
@@ -87,8 +89,6 @@
                </div>
       </div>
 
-    
-      
       
   </div>
 
@@ -98,14 +98,20 @@
 
 
 <script setup>
-import { ref,onMounted} from 'vue';
+import { ref,onMounted,computed} from 'vue';
 import {useRegalosStore} from '../stores/regalos'
 import { XCircleIcon, XMarkIcon } from "@heroicons/vue/24/solid"
 import { PlusCircleIcon } from "@heroicons/vue/24/solid"
 import { PencilSquareIcon } from "@heroicons/vue/24/solid"
 import { looseIndexOf } from '@vue/shared';
-import { editListaxId, guardarRegalo } from '../firebase/index'
+import { editListaxId, guardarRegalo,ismatchName } from '../firebase/index'
 import { getAllRegalos } from '../firebase/index';
+import { toast } from 'vue3-toastify';
+import { helpers, required, email, minLength, } from '@vuelidate/validators'
+import { useVuelidate } from '@vuelidate/core'
+
+
+
 
 
 const present = ref('')
@@ -122,12 +128,27 @@ onMounted(async() => {
 })
 
 
+
+const rules = computed(() => ({
+  nombremodel: {
+    required: helpers.withMessage("Este campo es requerido", required)
+  }
+}));
+
+const v$ = useVuelidate(rules, {
+  present,nombremodel
+})
+
+
 const addItemLista=() => {
   if(present.value!=''){
     regaloST.setgroupregalos(present.value)
     present.value=''
   }else{
-    alert('Ingrese algo antes de guardar')
+    toast("Ingrese algo antes de guardar", {
+      autoClose: 3000,
+      position: toast.POSITION.TOP_CENTER,
+    });
   }
 }
 
@@ -136,7 +157,10 @@ const addItemListaAux = () => {
     regaloST.setitemaux(presentaux.value)
     presentaux.value = ''
   } else {
-    alert('Ingrese algo antes de guardar')
+    toast("Ingrese algo antes de guardar", {
+      autoClose: 3000,
+      position: toast.POSITION.TOP_CENTER,
+    });
   }
 }
 
@@ -146,19 +170,43 @@ const ActualizarLista=(id) => {
     regaloST.clearlista()
     getAllRegalos()
     closeModal()
+    toast.success("Lista actualizada!", {
+      autoClose: 3000,
+      position: toast.POSITION.TOP_CENTER,
+    });
 }
 
 const save=() => {
-     if(regaloST.groupregalos.length!=0){
-       guardarRegalo(nombremodel.value,regaloST.groupregalos)
-       nombremodel.value=''
-     }else{
-      alert('Debes añadir tu sugerencia con el boton +')
-     }
-    
-     regaloST.cleargroupregaloss()
-     regaloST.clearlista()
-     getAllRegalos()
+  v$.value.$touch();
+  if (!v$.value.$invalid && regaloST.groupregalos.length!=0) {
+     //evaluar si existe un documento con el mismo nombre de
+     ismatchName(nombremodel.value).then((res)=>{
+        if(res){
+          toast.warning(`Existe un registro con el nombre ${nombremodel.value}`, {
+          autoClose: 3000,
+          position: toast.POSITION.TOP_CENTER,
+          });
+        }else{
+          console.log('registrar  nuevo doc con nuevo nonmbre');
+            guardarRegalo(nombremodel.value, regaloST.groupregalos)
+            nombremodel.value = ''
+            regaloST.cleargroupregaloss()
+            regaloST.clearlista()
+            getAllRegalos()
+            toast.success(`Nuevo integrante agregado, puedes seguir editando tu lista`, {
+            autoClose: 5000,
+            position: toast.POSITION.TOP_CENTER,
+            });
+        }
+     })
+
+  }else{
+    toast.error("Antes, debes completar todos los campos ", {
+      autoClose: 3000,
+      position: toast.POSITION.TOP_CENTER,
+    });
+  }
+       
 }
 
 const showed=ref(false)

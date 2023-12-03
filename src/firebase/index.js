@@ -98,3 +98,21 @@ export const editListaxId = async (id,data) => {
     })
 
 }
+
+//buscar si ya se creo un documento con un nombre
+export const ismatchName = async (nombre) => {
+     const regaloST = useRegalosStore()
+    if (regaloST.listafirebase){
+        console.log(regaloST.listafirebase);
+       const elem= regaloST.listafirebase.map((u)=>{ return u.data})
+       console.log(elem);
+       const filtrado=elem.filter((u)=>u.nombre==nombre)
+       console.log(filtrado.length);
+       if(filtrado.length!=0){
+            return true
+       }else{
+            return false
+       }
+    }
+ 
+}
