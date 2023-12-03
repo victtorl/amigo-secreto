@@ -13,11 +13,11 @@
         <label class=" text-xl font-medium" for="">Añadir nombre y sugerencia</label>
              <div class="flex flex-col relative  w-auto  lg:w-auto text-black " >
                   <div class="flex  flex-col items-start gap-x-2">
-                    <input v-model="nombremodel"   class=" w-72 mb-4 lg:w-auto h-10  border-2 pl-2 text-sm placeholder:text-sm  border-secundary rounded-md focus-visible:outline-none"  
+                    <input v-model="nombremodel"   class=" w-auto mb-4 lg:w-auto h-10  border-2 pl-2 text-sm placeholder:text-sm  border-secundary rounded-md focus-visible:outline-none"  
                     :class="{ 'border-b-2 border-red-600': v$.nombremodel.$error }" 
                     type="text" placeholder="Nombre" >
                     <span class="flex flex-row">
-                      <input v-model="present"  @keyup.enter="addItemLista" class="relative w-72   lg:w-auto h-10  border-2 pl-2 text-sm placeholder:text-sm  border-secundary rounded-md focus-visible:outline-none"  
+                      <input v-model="present"  @keyup.enter="addItemLista" class="relative w-auto   lg:w-auto h-10  border-2 pl-2 text-sm placeholder:text-sm  border-secundary rounded-md focus-visible:outline-none"  
                       
                       type="text" placeholder="Escriba su sugerencia" >
                       <PlusCircleIcon class="h-8 w-8 text-red-500 absolute  -right-8 bottom-1 " @click="addItemLista" />
