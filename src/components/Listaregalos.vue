@@ -1,5 +1,5 @@
 <template>
-  <div class="px-6 lg:px-36 py-10 h-full  bg-gray-800 relative text-white">
+  <div class="px-6 lg:px-36 py-10 h-full lg:h-[100vh] bg-gray-800 relative text-white">
       <h1 class="text-2xl text-center font-medium  pb-6">Lista de regalos familia  </h1>
       <h2 class="text-xl font-medium pb-4">Reglas:</h2>
       <ol class="text-lg flex flex-col gap-y-[10px] leading-5" >
@@ -34,7 +34,7 @@
               <button  @click="save" :class="regaloST.groupregalos.length==0?'w-44 rounded-lg text-sm bg-slate-700 h-10':' w-44 rounded-lg text-sm bg-green-700 h-10'" >Agregar participante</button>  
       </div>          
 
-      <div class=" flex flex-col gap-y-4 items-start mt-8  ">  
+      <div class=" flex flex-col gap-y-4 items-start mt-8 ">  
                <label class=" text-xl font-medium " for="">Lista de participantes:</label>
                <div class="grid grid-cols-1 xl:grid-cols-3  place-content-between gap-y-6 gap-x-10 " >
                     <div v-for="item in regaloST.listafirebase" class="flex flex-row items-center justify-between gap-x-2 max-w-3xl" >
@@ -57,6 +57,8 @@
                      </div>
                </div>
 
+
+               <!-- //modal -->
                <div v-if="showed" class="w-[100vw] h-[100vh]  bg-gray-900 flex justify-center items-center fixed left-0 top-0 z-50 ">
                 
                 <div class="grid grid-cols-1 xl:grid-cols-3  place-content-between gap-y-6 gap-x-10 h-[50%] overflow-auto touch-pan-y  " >
