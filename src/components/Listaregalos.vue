@@ -39,7 +39,7 @@
                       <div v-for="item in regaloST.listafirebase" class="flex flex-row items-center justify-between gap-x-2 max-w-3xl" >
                         <div>
                           <div class="text-2xl">
-                            <label>Nombre: </label>
+                            <!-- <label>Nombre: </label> -->
                             <label >{{ item.data.nombre }}</label>
                           </div>
                           <ol class="text-white text-lg">
@@ -65,7 +65,7 @@
                         <div v-for="item in regaloST.itemfirebase" class="flex flex-row items-center justify-between gap-x-2 max-w-3xl " >
                           <div>
                             <div class="text-2xl">
-                              <label>Nombre: </label>
+                              <!-- <label>Nombre: </label> -->
                               <label >{{ item.data.nombre }}</label>
                             </div>
                             <ol class="text-white text-lg">
