@@ -1,5 +1,5 @@
 <template>
-  <div class="px-6 lg:px-36 py-10 h-full lg:h-[100vh] bg-gray-800 relative text-white">
+  <div class="px-6 lg:px-36 py-10 h-auto bg-gray-800 relative text-white">
       <h1 class="text-2xl text-center font-medium  pb-6">Lista de regalos familia  </h1>
       <h2 class="text-xl font-medium pb-4">Reglas:</h2>
       <ol class="text-lg flex flex-col gap-y-[10px] leading-5" >
@@ -32,64 +32,67 @@
                     </li>
               </ol> 
               <button  @click="save" :class="regaloST.groupregalos.length==0?'w-44 rounded-lg text-sm bg-slate-700 h-10':' w-44 rounded-lg text-sm bg-green-700 h-10'" >Agregar participante</button>  
-      </div>          
-
-      <div class=" flex flex-col gap-y-4 items-start mt-8 ">  
-               <label class=" text-xl font-medium " for="">Lista de participantes:</label>
-               <div class="grid grid-cols-1 xl:grid-cols-3  place-content-between gap-y-6 gap-x-10 " >
-                    <div v-for="item in regaloST.listafirebase" class="flex flex-row items-center justify-between gap-x-2 max-w-3xl" >
-                      <div>
-                        <div class="text-2xl">
-                          <label>Nombre: </label>
-                          <label >{{ item.data.nombre }}</label>
-                        </div>
-                        <ol class="text-white text-lg">
-                          <li class="flex flex-row " v-for="itm in item.data.sugerencias">
-                              - {{ itm }}
-                            </li>
-                          </ol>
-                        </div>
-                        <div>
-                          <button class="bg-gray-500 px-4 text-md rounded-lg">
-                            <PencilSquareIcon class="h-8 w-8 text-yellow-500" @click="getDataItm(item)" ></PencilSquareIcon>
-                          </button>
-                        </div>
-                     </div>
-               </div>
-
-
-               <!-- //modal -->
-               <div v-if="showed" class="w-[100vw] h-[100vh]  bg-gray-900 flex justify-center items-center fixed left-0 top-0 z-50 ">
-                
-                <div class="grid grid-cols-1 xl:grid-cols-3  place-content-between gap-y-6 gap-x-10 h-[50%] overflow-auto touch-pan-y  " >
-                  <XCircleIcon class="h-10 w-10 text-red-500 absolute top-6 right-6" @click="closeModal"></XCircleIcon>
-                      <div v-for="item in regaloST.itemfirebase" class="flex flex-row items-center justify-between gap-x-2 max-w-3xl " >
+     
+               <div class=" flex flex-col gap-y-4 items-start mt-8 ">  
+                 <label class=" text-xl font-medium " for="">Lista de participantes:</label>
+                 <div class="grid grid-cols-1 xl:grid-cols-3  place-content-between gap-y-6 gap-x-10 " >
+                      <div v-for="item in regaloST.listafirebase" class="flex flex-row items-center justify-between gap-x-2 max-w-3xl" >
                         <div>
                           <div class="text-2xl">
                             <label>Nombre: </label>
                             <label >{{ item.data.nombre }}</label>
                           </div>
                           <ol class="text-white text-lg">
-                            <li class="flex flex-row items-center max-w-64 mt-4 justify-between " v-for="itm in regaloST.itemauxiliar">
+                            <li class="flex flex-row " v-for="itm in item.data.sugerencias">
                                 - {{ itm }}
-                                <XMarkIcon class="h-6 w-6 text-red-500" @click="regaloST.filteritemaux(looseIndexOf(regaloST.itemauxiliar, itm))"   alt="" srcset="" />
                               </li>
                             </ol>
                           </div>
-                         
+                          <div>
+                            <button class="bg-gray-500 px-4 text-md rounded-lg">
+                              <PencilSquareIcon class="h-8 w-8 text-yellow-500" @click="getDataItm(item)" ></PencilSquareIcon>
+                            </button>
+                          </div>
                        </div>
+                 </div>
 
-                       <span class="flex flex-row items-center gap-x-4 text-black">
-                        <input v-model="presentaux" @keyup.enter="addItemListaAux"   class=" w-56  lg:w-64 h-10  border-2 pl-2 text-sm placeholder:text-sm  border-secundary rounded-md focus-visible:outline-none"  
-                        type="text" placeholder="Escriba su sugerencia" >
-                        <PlusCircleIcon class="h-8 w-8 text-red-500 "  @click="addItemListaAux"  />
-                      </span>
-                      <button class="bg-green-200 w-44 h-10 justify-center items-center text-black" @click="ActualizarLista(regaloST.itemfirebase[0].id)"  >Guardar cambios</button>
 
-                    </div>
+                 <!-- //modal -->
+                 <div v-if="showed" class="w-[100vw] h-[100vh]  bg-gray-900 flex justify-center items-center fixed left-0 top-0 z-50 ">
+                
+                  <div class="grid grid-cols-1 xl:grid-cols-3  place-content-between gap-y-6 gap-x-10 h-[50%] overflow-auto touch-pan-y  " >
+                    <XCircleIcon class="h-10 w-10 text-red-500 absolute top-6 right-6" @click="closeModal"></XCircleIcon>
+                        <div v-for="item in regaloST.itemfirebase" class="flex flex-row items-center justify-between gap-x-2 max-w-3xl " >
+                          <div>
+                            <div class="text-2xl">
+                              <label>Nombre: </label>
+                              <label >{{ item.data.nombre }}</label>
+                            </div>
+                            <ol class="text-white text-lg">
+                              <li class="flex flex-row items-center max-w-64 mt-4 justify-between " v-for="itm in regaloST.itemauxiliar">
+                                  - {{ itm }}
+                                  <XMarkIcon class="h-6 w-6 text-red-500" @click="regaloST.filteritemaux(looseIndexOf(regaloST.itemauxiliar, itm))"   alt="" srcset="" />
+                                </li>
+                              </ol>
+                            </div>
+                         
+                         </div>
+
+                         <span class="flex flex-row items-center gap-x-4 text-black">
+                          <input v-model="presentaux" @keyup.enter="addItemListaAux"   class=" w-56  lg:w-64 h-10  border-2 pl-2 text-sm placeholder:text-sm  border-secundary rounded-md focus-visible:outline-none"  
+                          type="text" placeholder="Escriba su sugerencia" >
+                          <PlusCircleIcon class="h-8 w-8 text-red-500 "  @click="addItemListaAux"  />
+                        </span>
+                        <button class="bg-green-200 w-44 h-10 justify-center items-center text-black" @click="ActualizarLista(regaloST.itemfirebase[0].id)"  >Guardar cambios</button>
+
+                      </div>
                   
-               </div>
-      </div>
+                 </div>
+        </div>
+
+            </div>          
+
+     
 
       
   </div>

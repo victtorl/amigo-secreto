@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.todo{
+    background-color: 	#1F2937;
+}
