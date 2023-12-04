@@ -71,7 +71,6 @@
                             <ol class="text-white text-lg">
                               <li class="flex flex-row items-center max-w-64 mt-4 justify-between " v-for="itm in regaloST.itemauxiliar">
                                   <!-- - {{ itm }} -->
-                          <button @click="regaloST.setitemauxinterno(regaloST.itemauxiliar)">HOLA</button>
                                   <input type="text" v-model="regaloST.itemauxiliar[looseIndexOf(regaloST.itemauxiliar,itm)]" @change="regaloST.setitemauxinterno(regaloST.itemauxiliar, looseIndexOf(regaloST.itemauxiliar, itm), regaloST.itemauxiliar[looseIndexOf(regaloST.itemauxiliar, itm)])"  :placeholder="itm" class="text-black" >
                                   <XMarkIcon class="h-6 w-6 text-red-500" @click="regaloST.filteritemaux(looseIndexOf(regaloST.itemauxiliar, itm))"   alt="" srcset="" />
                                 </li>
