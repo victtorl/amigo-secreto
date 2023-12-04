@@ -3,10 +3,10 @@
       <h1 class="text-2xl text-center font-medium  pb-6">Lista de regalos familia  </h1>
       <h2 class="text-xl font-medium pb-4">Reglas:</h2>
       <ol class="text-lg flex flex-col gap-y-[10px] leading-5" >
-        <li>Los regalos tienen un precio base de 10 soles(sujeto a cariño y voluntad de quien regala).</li>
+        <li>Los regalos tienen un precio base de 10 soles. <span class="text-yellow-600">(sujeto a cariño y voluntad de quien regala).</span></li>
         <li>Llenar la lista con las pretenciones de regalos  que desea recibir.</li>
-        <li>Puede editar esta lista hasta una fecha limite 6 de diciembre de 2023 11:00 pm.</li>
-        <li>Solo editar su lista nunca la de otro participante.</li>
+        <li>Puede editar esta lista hasta una fecha limite 6 de diciembre de 2023 11:00 pm.<span class="text-red-500">(sujeto a sugerencias)</span></li>
+        <li>Solo editar su lista nunca la de otro participante, a menos que sea para poner la palabra <span class="text-green-600">'comprado'</span></li>
       </ol>
 
       <div class=" flex flex-col gap-y-4 items-start mt-8 ">  
