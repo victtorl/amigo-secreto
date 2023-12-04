@@ -53,21 +53,19 @@ export const useRegalosStore=defineStore("regalos-store",() => {
             itemauxiliar.value = itemauxiliar.value.concat(data);
         }
         function setitemauxinterno(array: any,index:any,elem:any) {
-            var size=0
-           const newarray = array.map((u:any)=>{
+           const newarray = array.map((u:any,indx:any)=>{
                 console.log(u);
-                console.log(size);
-                size=size+1
-                if(size==index){
-                    // console.log('editar esta elem:', elem);
+                console.log(index);
+                if(index==indx){
+                    //  console.log('editar esta elem:', elem);
                     return elem
                 }else{
-                    // console.log('datos normales:',u);
+                    //  console.log('datos normales:',u);
                     return u
                 }
                 
             })
-                console.log(newarray);
+                // console.log(newarray);
                 itemauxiliar.value=newarray
 
         }
