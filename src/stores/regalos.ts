@@ -52,6 +52,25 @@ export const useRegalosStore=defineStore("regalos-store",() => {
         function setitemaux(data: any) {
             itemauxiliar.value = itemauxiliar.value.concat(data);
         }
+        function setitemauxinterno(array: any,index:any,elem:any) {
+            var size=0
+           const newarray = array.map((u:any)=>{
+                console.log(u);
+                console.log(size);
+                size=size+1
+                if(size==index){
+                    // console.log('editar esta elem:', elem);
+                    return elem
+                }else{
+                    // console.log('datos normales:',u);
+                    return u
+                }
+                
+            })
+                console.log(newarray);
+                itemauxiliar.value=newarray
+
+        }
         function filteritemaux(data: number) {
         const newArr= itemauxiliar.value.filter(u=>looseIndexOf(itemauxiliar.value,u)!=data)
         itemauxiliar.value=newArr
@@ -77,6 +96,7 @@ export const useRegalosStore=defineStore("regalos-store",() => {
     itemauxiliar,
     llenaritemaux,
     setitemaux,
+    setitemauxinterno,
     filteritemaux,
     clearitemaux
 

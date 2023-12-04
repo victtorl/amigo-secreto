@@ -70,14 +70,15 @@
                             </div>
                             <ol class="text-white text-lg">
                               <li class="flex flex-row items-center max-w-64 mt-4 justify-between " v-for="itm in regaloST.itemauxiliar">
-                                  - {{ itm }}
+                                  <!-- - {{ itm }} -->
+                          <button @click="regaloST.setitemauxinterno(regaloST.itemauxiliar)">HOLA</button>
+                                  <input type="text" v-model="regaloST.itemauxiliar[looseIndexOf(regaloST.itemauxiliar,itm)]" @change="regaloST.setitemauxinterno(regaloST.itemauxiliar, looseIndexOf(regaloST.itemauxiliar, itm), regaloST.itemauxiliar[looseIndexOf(regaloST.itemauxiliar, itm)])"  :placeholder="itm" class="text-black" >
                                   <XMarkIcon class="h-6 w-6 text-red-500" @click="regaloST.filteritemaux(looseIndexOf(regaloST.itemauxiliar, itm))"   alt="" srcset="" />
                                 </li>
                               </ol>
                             </div>
                          
                          </div>
-
                          <span class="flex flex-row items-center gap-x-4 text-black">
                           <input v-model="presentaux" @keyup.enter="addItemListaAux"   class=" w-56  lg:w-64 h-10  border-2 pl-2 text-sm placeholder:text-sm  border-secundary rounded-md focus-visible:outline-none"  
                           type="text" placeholder="Escriba su sugerencia" >
