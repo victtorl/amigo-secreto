@@ -5,7 +5,7 @@
       <ol class="text-lg flex flex-col gap-y-[10px] leading-5" >
         <li>Los regalos tienen un precio base de 10 soles(sujeto a cariño y voluntad de quien regala).</li>
         <li>Llenar la lista con las pretenciones de regalos  que desea recibir.</li>
-        <li>Puede editar esta lista hasta una fecha limite la cual sera comunicada en el grupo de wsp.</li>
+        <li>Puede editar esta lista hasta una fecha limite 6 de diciembre de 2023 11:00 pm.</li>
         <li>Solo editar su lista nunca la de otro participante.</li>
       </ol>
 
