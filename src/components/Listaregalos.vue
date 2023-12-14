@@ -8,7 +8,7 @@
         <li>Puede editar esta lista hasta una fecha limite 6 de diciembre de 2023 11:00 pm.<span class="text-red-500">(sujeto a sugerencias)</span></li>
         <li>Solo editar su lista nunca la de otro participante, a menos que sea para poner la palabra <span class="text-green-600">'comprado'</span></li>
       </ol>
-
+      <!-- <button class="bg-red-500" @click="guardarJSON">GUARDAR JSON</button> -->
       <div class=" flex flex-col gap-y-4 items-start mt-8 ">  
         <label class=" text-xl font-medium" for="">Añadir nombre y sugerencia</label>
              <div class="flex flex-col relative  w-auto  lg:w-auto text-black " >
@@ -84,7 +84,7 @@
                           <PlusCircleIcon class="h-8 w-8 text-red-500 "  @click="addItemListaAux"  />
                         </span>
                         <button class="bg-green-200 w-44 h-10 justify-center items-center text-black" @click="ActualizarLista(regaloST.itemfirebase[0].id)"  >Guardar cambios</button>
-
+                        
                       </div>
                   
                  </div>
@@ -122,6 +122,13 @@ import { useVuelidate } from '@vuelidate/core'
 const present = ref('')
 const nombremodel = ref('')
 const regaloST = useRegalosStore()
+
+const guardarJSON = () => {
+  
+ const dat= regaloST.listafirebase.map((u)=> { return u.data })
+ console.log(dat);
+    
+}
 
 const allregalos=ref()
 
