@@ -7,7 +7,7 @@
         <li>Llenar la lista con las pretenciones de regalos  que desea recibir.</li>
         <li>Puede editar esta lista hasta una fecha limite 6 de diciembre de 2023 11:00 pm.<span class="text-red-500">(sujeto a sugerencias)</span></li>
         <li>Al comprar un regalo colocar la palabra <span class="text-[#CD5C5C]">'comprado'</span></li>
-        <li>Al colocar la palabra comprado en un item de cualquier lista esta cambiara de color a  <span class="text-[#CD5C5C] text-2xl">rojo</span> y si no existe la palabra comprado la lista se mantendrá <span class="text-[#00FF7F] text-2xl">verde</span>  </li>
+        <li>Al colocar la palabra comprado en un item de cualquier lista esta cambiara de color a  <span class="text-[#CD5C5C] text-2xl">rojo</span> y si no existe la palabra comprado el item de la lista se mantendrá <span class="text-[#00FF7F] text-2xl">verde</span>  </li>
         <li><span class="text-yellow-600">Falta poco para Navidad 🎁 🧝‍♂️ 🎄 ❄️ ❄️ ❄️ ❄️ ❄️</span></li>
       </ol>
       <!-- <button class="bg-red-500" @click="guardarJSON">GUARDAR JSON</button> -->
