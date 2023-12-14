@@ -41,7 +41,7 @@
                         <div>
                           <div class="text-2xl">
                             <!-- <label>Nombre: </label> -->
-                            <label >{{ item.data.nombre }}</label>
+                            <label class="text-[#006400]"  >{{ item.data.nombre }} 🎄</label>
                           </div>
                           <ol class="text-white text-lg">
                             <li class="flex flex-row " v-for="itm in item.data.sugerencias">
@@ -67,7 +67,7 @@
                           <div>
                             <div class="text-2xl">
                               <!-- <label>Nombre: </label> -->
-                              <label >{{ item.data.nombre }}</label>
+                              <label class="text-[#006400]" >{{ item.data.nombre }}</label>
                             </div>
                             <ol class="text-white text-lg">
                               <li class="flex flex-row items-center max-w-64 mt-4 justify-between " v-for="itm in regaloST.itemauxiliar">
