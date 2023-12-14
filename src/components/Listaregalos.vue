@@ -6,7 +6,8 @@
         <li>Los regalos tienen un precio base de 10 soles. <span class="text-yellow-600">(sujeto a cariño y voluntad de quien regala).</span></li>
         <li>Llenar la lista con las pretenciones de regalos  que desea recibir.</li>
         <li>Puede editar esta lista hasta una fecha limite 6 de diciembre de 2023 11:00 pm.<span class="text-red-500">(sujeto a sugerencias)</span></li>
-        <li>Solo editar su lista nunca la de otro participante, a menos que sea para poner la palabra <span class="text-green-600">'comprado'</span></li>
+        <li>Al comprar un regalo colocar la palabra <span class="text-[#CD5C5C]">'comprado'</span></li>
+        <li>Al colocar la palabra comprado en un item de cualquier lista esta cambiara de color a  <span class="text-[#CD5C5C] text-2xl">rojo</span> y si no existe la palabra comprado la lista se mantendrá <span class="text-[#00FF7F] text-2xl">verde</span>  </li>
         <li><span class="text-yellow-600">Falta poco para Navidad 🎁 🧝‍♂️ 🎄 ❄️ ❄️ ❄️ ❄️ ❄️</span></li>
       </ol>
       <!-- <button class="bg-red-500" @click="guardarJSON">GUARDAR JSON</button> -->
@@ -41,11 +42,13 @@
                         <div>
                           <div class="text-2xl">
                             <!-- <label>Nombre: </label> -->
-                            <label class="text-[#006400]"  >{{ item.data.nombre }} 🎄</label>
+                            <label class="text-[#DCDCDC]"  >{{ item.data.nombre }} 🎄</label>
                           </div>
                           <ol class="text-white text-lg">
                             <li class="flex flex-row " v-for="itm in item.data.sugerencias">
-                                - {{ itm }}
+                                <p :class="`${itm.includes('comprado')?'text-[#CD5C5C]':'text-[#00FF7F]'}`" >
+                                  - {{ itm }}
+                                </p>
                               </li>
                             </ol>
                           </div>
@@ -67,7 +70,7 @@
                           <div>
                             <div class="text-2xl">
                               <!-- <label>Nombre: </label> -->
-                              <label class="text-[#006400]" >{{ item.data.nombre }}</label>
+                              <label class="text-[#DCDCDC]" >{{ item.data.nombre }}</label>
                             </div>
                             <ol class="text-white text-lg">
                               <li class="flex flex-row items-center max-w-64 mt-4 justify-between " v-for="itm in regaloST.itemauxiliar">
