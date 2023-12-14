@@ -7,6 +7,7 @@
         <li>Llenar la lista con las pretenciones de regalos  que desea recibir.</li>
         <li>Puede editar esta lista hasta una fecha limite 6 de diciembre de 2023 11:00 pm.<span class="text-red-500">(sujeto a sugerencias)</span></li>
         <li>Solo editar su lista nunca la de otro participante, a menos que sea para poner la palabra <span class="text-green-600">'comprado'</span></li>
+        <li><span class="text-yellow-600">Falta poco para Navidad 🎁 🧝‍♂️ 🎄 ❄️ ❄️ ❄️ ❄️ ❄️</span></li>
       </ol>
       <!-- <button class="bg-red-500" @click="guardarJSON">GUARDAR JSON</button> -->
       <div class=" flex flex-col gap-y-4 items-start mt-8 ">  
