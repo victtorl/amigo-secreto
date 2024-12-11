@@ -70,7 +70,7 @@
                           <div>
                             <div class="text-2xl">
                               <!-- <label>Nombre: </label> -->
-                              <label class="text-[#DCDCDC]" >{{ item.data.nombre }}</label>
+                              <label class="text-[#DCDCDC]" >Sugerencias de: {{ item.data.nombre }}</label>
                             </div>
                             <ol class="text-white text-lg">
                               <li class="flex flex-row items-center max-w-64 mt-4 justify-between " v-for="itm in regaloST.itemauxiliar">
@@ -84,7 +84,7 @@
                          </div>
                          <span class="flex flex-row items-center gap-x-4 text-black">
                           <input v-model="presentaux" @keyup.enter="addItemListaAux"   class=" w-56  lg:w-64 h-10  border-2 pl-2 text-sm placeholder:text-sm  border-secundary rounded-md focus-visible:outline-none"  
-                          type="text" placeholder="Escriba su sugerencia" >
+                          type="text" placeholder="Escriba su sugerencia y agregue con  +" >
                           <PlusCircleIcon class="h-8 w-8 text-red-500 "  @click="addItemListaAux"  />
                         </span>
                         <button class="bg-green-200 w-44 h-10 justify-center items-center text-black" @click="ActualizarLista(regaloST.itemfirebase[0].id)"  >Guardar cambios</button>
