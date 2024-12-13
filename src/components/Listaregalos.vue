@@ -87,6 +87,10 @@
                           type="text" placeholder="Escriba su sugerencia y agregue con  +" >
                           <PlusCircleIcon class="h-8 w-8 text-red-500 "  @click="addItemListaAux"  />
                         </span>
+
+                        
+                        <CargarImagen/>
+
                         <button class="bg-green-200 w-44 h-10 justify-center items-center text-black" @click="ActualizarLista(regaloST.itemfirebase[0].id)"  >Guardar cambios</button>
                         
                       </div>
@@ -118,6 +122,9 @@ import { getAllRegalos } from '../firebase/index';
 import { toast } from 'vue3-toastify';
 import { helpers, required, email, minLength, } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
+
+import CargarImagen from './CargarImagen.vue'
+import { useImageStore } from '../stores/imgstore';
 
 
 
@@ -180,9 +187,9 @@ const addItemListaAux = () => {
   }
 }
 
-
+const imgST=useImageStore()
 const ActualizarLista=(id) => {
-    editListaxId(id,{nombre:regaloST.itemfirebase[0].data.nombre,sugerencias:regaloST.itemauxiliar})
+    editListaxId(id,{nombre:regaloST.itemfirebase[0].data.nombre,sugerencias:regaloST.itemauxiliar,imagenes:imgST.images})
     regaloST.clearlista()
     getAllRegalos()
     closeModal()
@@ -232,12 +239,18 @@ const showModal=() => {
 
 const listademo=ref([{nombre:'Demo',sugerencias:['nuevo','Sugerencia2']}])
 
+const photoST=useImageStore()
 
 const getDataItm=(variable) => {
   regaloST.setitem(variable)
   regaloST.setitemaux(variable.data.sugerencias)
+  if(variable.data.imagenes!=undefined){
+    photoST.updateAllimages(variable.data.imagenes)
+  }else{
+    photoST.clearimagess()
+  }
   showModal()
-  console.log(variable);
+  console.log(variable.data.imagenes);
 }
 const closeModal=() => {
     showModal()

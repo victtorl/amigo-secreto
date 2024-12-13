@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getDocs, collection,addDoc,setDoc,doc } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, listAll, getDownloadURL, getMetadata,deleteObject } from "firebase/storage";
 import { getAuth } from "firebase/auth"
 ///pinia
 import { useRegalosStore } from "../stores/regalos";
@@ -47,7 +48,7 @@ export const getAllRegalos = async () => {
         console.log(`${doc.id} => ${doc.data()}`);
         console.log(doc.data());
     });
-    return ligaST.listafirebase
+    return regaloST.listafirebase
 }
 
 //Guardar lista
@@ -116,3 +117,28 @@ export const ismatchName = async (nombre) => {
     }
  
 }
+
+
+
+///Eliminar imagen
+export const EliminarImagenPorUrl= (urlimage) => {
+    const storage=getStorage()
+    const imageRef = ref(storage, urlimage)
+    deleteObject(imageRef).then(() =>console.log('imagen eliminada'))
+    .catch((error) =>console.log("Failed to delete image: ", error))
+}
+
+//Upload image
+export const uploadImage = async (file,id) => {
+    const storage = getStorage();
+    const ImagesRef = ref(storage, `amigo-secreto/${id}`)
+  
+    return uploadBytes(ImagesRef, file)
+      .then(snapshot => {
+        return getDownloadURL(snapshot.ref)
+      })
+      .then(downloadURL => {
+        console.log('Download URL', downloadURL)
+        return downloadURL
+      })
+  }
