@@ -3,38 +3,42 @@
       <h1 class="text-2xl text-center font-medium  pb-6">Lista de regalos familia  </h1>
       <h2 class="text-xl font-medium pb-4">Reglas:</h2>
       <ol class="text-lg flex flex-col gap-y-[10px] leading-5" >
-        <li>Los regalos tienen un precio base de 10 soles. <span class="text-yellow-600">(sujeto a cariño y voluntad de quien regala).</span></li>
-        <li>Llenar la lista con las pretenciones de regalos  que desea recibir.</li>
-        <li>Puede editar esta lista hasta una fecha limite 6 de diciembre de 2023 11:00 pm.<span class="text-red-500">(sujeto a sugerencias)</span></li>
-        <li>Al comprar un regalo colocar la palabra <span class="text-[#CD5C5C]">'comprado'</span></li>
+        <li>Los regalos tienen un precio base de <span class="text-3xl" >50</span> soles. <span class="text-yellow-600">(el precio e sun precio promedio o precio base).</span></li>
+        <li>Llenar la lista con las pretenciones de regalos  que desea recibir</li>
+        <li>Ahora puede agregar <span class="underline text-red-500" >imagenes referenciales</span> del regalo que desea recibir</li>
+        <li>Al presiona el boton de editar puede ver las imagenes que subieron los usuarios</li>
+        <!-- <li>Al comprar un regalo colocar la palabra <span class="text-[#CD5C5C]">'comprado'</span></li> -->
         <li>Al colocar la palabra comprado en un item de cualquier lista esta cambiara de color a  <span class="text-[#CD5C5C] text-2xl">rojo</span> y si no existe la palabra comprado el item de la lista se mantendrá <span class="text-[#00FF7F] text-2xl">verde</span>  </li>
-        <li><span class="text-yellow-600">Falta poco para Navidad 🎁 🧝‍♂️ 🎄 ❄️ ❄️ ❄️ ❄️ ❄️</span></li>
+        <li><span class="text-yellow-600">Pasenlo bien 🎁 🎄 ❄️ ❄️ ❄️ ❄️ ❄️</span></li>
       </ol>
       <!-- <button class="bg-red-500" @click="guardarJSON">GUARDAR JSON</button> -->
       <div class=" flex flex-col gap-y-4 items-start mt-8 ">  
+
+          <!-- OPCION DE AGREGAR PARTICIPANTES START
         <label class=" text-xl font-medium" for="">Añadir nombre y sugerencia</label>
-             <div class="flex flex-col relative  w-auto  lg:w-auto text-black " >
-                  <div class="flex  flex-col items-start gap-x-2">
-                    <input v-model="nombremodel"   class=" w-auto mb-4 lg:w-auto h-10  border-2 pl-2 text-sm placeholder:text-sm  border-secundary rounded-md focus-visible:outline-none"  
-                    :class="{ 'border-b-2 border-red-600': v$.nombremodel.$error }" 
-                    type="text" placeholder="Nombre" >
-                    <span class="flex flex-row">
-                      <input v-model="present"  @keyup.enter="addItemLista" class="relative w-auto   lg:w-auto h-10  border-2 pl-2 text-sm placeholder:text-sm  border-secundary rounded-md focus-visible:outline-none"  
-                      
-                      type="text" placeholder="Escriba su sugerencia" >
-                      <PlusCircleIcon class="h-8 w-8 text-red-500 absolute  -right-8 bottom-1 " @click="addItemLista" />
-                    </span>
-                  </div>
+          <div class="flex flex-col relative  w-auto  lg:w-auto text-black " >
+              <div class="flex  flex-col items-start gap-x-2">
+                <input v-model="nombremodel"   class=" w-auto mb-4 lg:w-auto h-10  border-2 pl-2 text-sm placeholder:text-sm  border-secundary rounded-md focus-visible:outline-none"  
+                :class="{ 'border-b-2 border-red-600': v$.nombremodel.$error }" 
+                type="text" placeholder="Nombre" >
+                <span class="flex flex-row">
+                  <input v-model="present"  @keyup.enter="addItemLista" class="relative w-auto   lg:w-auto h-10  border-2 pl-2 text-sm placeholder:text-sm  border-secundary rounded-md focus-visible:outline-none"  
+                  
+                  type="text" placeholder="Escriba su sugerencia" >
+                  <PlusCircleIcon class="h-8 w-8 text-red-500 absolute  -right-8 bottom-1 " @click="addItemLista" />
+                </span>
               </div>
-              <ol v-if="regaloST.groupregalos.length != 0" >
-                  <li v-for="item in regaloST.groupregalos" class="flex flex-row items-center mb-2 gap-x-4 w-56 justify-between" >
-                      {{ item }} 
-                      <!-- <img src="../assets/nodoicons/deleteSimbol.svg" @click="regaloST.filtergroupregalos(looseIndexOf(regaloST.groupregalos, item))" class="h-4cursor-pointer " alt="" srcset=""> -->
-                        <XMarkIcon class="h-6 w-6 text-red-500" @click="regaloST.filtergroupregalos(looseIndexOf(regaloST.groupregalos, item))"  alt="" srcset="" />
-                    </li>
-              </ol> 
-              <button  @click="save" :class="regaloST.groupregalos.length==0?'w-44 rounded-lg text-sm bg-slate-700 h-10':' w-44 rounded-lg text-sm bg-green-700 h-10'" >Agregar participante</button>  
-     
+          </div>
+          <ol v-if="regaloST.groupregalos.length != 0" >
+              <li v-for="item in regaloST.groupregalos" class="flex flex-row items-center mb-2 gap-x-4 w-56 justify-between" >
+                  {{ item }} 
+                    <XMarkIcon class="h-6 w-6 text-red-500" @click="regaloST.filtergroupregalos(looseIndexOf(regaloST.groupregalos, item))"  alt="" srcset="" />
+                </li>
+          </ol> 
+          <button  @click="save" :class="regaloST.groupregalos.length==0?'w-44 rounded-lg text-sm bg-slate-700 h-10':' w-44 rounded-lg text-sm bg-green-700 h-10'" >Agregar participante</button>  
+          OPCION DE AGREGAR PARTICIPANTES END -->
+          
+              
                <div class=" flex flex-col gap-y-4 items-start mt-8 ">  
                  <label class=" text-xl font-medium " for="">Lista de participantes:</label>
                  <div class="grid grid-cols-1 xl:grid-cols-3  place-content-between gap-y-6 gap-x-10 " >
