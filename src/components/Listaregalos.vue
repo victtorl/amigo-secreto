@@ -62,9 +62,9 @@
 
 
                  <!-- //modal -->
-                 <div v-if="showed" class="w-[100vw] h-[100vh]  bg-gray-900 flex justify-center items-center fixed left-0 top-0 z-50 ">
+                 <div v-if="showed" class=" bg-gray-900 flex justify-center items-center fixed left-0 top-0 z-50 ">
                 
-                  <div class="grid grid-cols-1 xl:grid-cols-3  place-content-between gap-y-6 gap-x-10 h-[50%] overflow-auto touch-pan-y  " >
+                  <div class="grid grid-cols-1 xl:grid-cols-1 px-6 place-content-between gap-y-6 gap-x-10 w-[100vw] h-[100vh]  py-8 lg:py-16 overflow-auto touch-pan-y  " >
                     <XCircleIcon class="h-10 w-10 text-red-500 absolute top-6 right-6" @click="closeModal"></XCircleIcon>
                         <div v-for="item in regaloST.itemfirebase" class="flex flex-row items-center justify-between gap-x-2 max-w-3xl " >
                           <div>
