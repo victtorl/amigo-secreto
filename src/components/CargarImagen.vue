@@ -29,7 +29,7 @@
 <div class="grid grid-cols-2 md:grid-cols-3 gap-4  py-4 md:py-8  ">
           <div  v-for="(item,i) in imgST.images" class=" relative" 
           :key="index"  >
-              <img :src="item" id="output"  class="h-36 w-full lg:h-64  rounded-lg object-cover "  alt="">
+              <img :src="item" id="output"  class="h-36 w-full lg:h-auto  rounded-lg object-ver "  alt="">
               <p class="h-8 w-8 bg-red-500 rounded-full font-bold flex items-center justify-center absolute top-0 right-0 hover:bg-red-900 cursor-pointer" 
                   @click="removeItem(item)"    
               >X</p>
